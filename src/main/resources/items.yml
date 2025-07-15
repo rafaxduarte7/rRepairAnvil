@@ -1,0 +1,9 @@
+settings:
+  # quando se cria um item personalizado, normalmente o desenvolvedor coloca um nbt no mesmo,
+  # procure os nbts dos itens personalizados que você não quer que sejam reparáveis.
+  no-repair-by-nbt:
+    - "neymar-no-santos"
+
+items:
+  # material : quantia necessária de diamantes
+  DIAMOND_CHESTPLATE: 3 # peitoral de diamante, para reparar eu preciso de 3 diamantes

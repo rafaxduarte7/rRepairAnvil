@@ -1,0 +1,5 @@
+messages:
+  no-has-diamond:
+    - "&cVocê precisa de <required> diamantes para reparar este item!"
+  successful-repair:
+    - "&a&lBOOYAH! &aVocê reparou este item com sucesso."
