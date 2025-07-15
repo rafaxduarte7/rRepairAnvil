@@ -23,6 +23,14 @@ public class InteractListener implements Listener {
     void on(PlayerInteractEvent event) {
         final Player player = event.getPlayer();
 
+        if (player.getItemInHand().getType() == Material.DIAMOND_CHESTPLATE && event.getAction() == Action.LEFT_CLICK_BLOCK) {
+            final ItemStack itemStack = NBTUtils.nbt(player.getItemInHand(), "neymar-no-santos", true);
+            player.setItemInHand(itemStack);
+
+            Message.send(player, "deu bom em rafax");
+            return;
+        }
+
         final Block clickedBlock = event.getClickedBlock();
         if (clickedBlock == null || clickedBlock.getType() != Material.ANVIL) return;
 
@@ -46,7 +54,11 @@ public class InteractListener implements Listener {
             }
         }
 
-        if (itemStack.getDurability() == 0) return;
+        if (itemStack.getDurability() == 0) {
+            messages.getStringList("messages.no-durability")
+                .forEach(line -> Message.send(player, line));
+            return;
+        }
 
         final Integer required = itemsLoader.getValue(itemStack.getType());
         if (required == null) return;

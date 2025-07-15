@@ -5,3 +5,5 @@ messages:
     - "&a&lBOOYAH! &aVocê reparou este item com sucesso."
   has-nbt-blocked:
     - "&cVocê não pode reparar este item pois ele possui algum nbt bloqueado!"
+  no-durability:
+    - "&cEste item não está danificado."
