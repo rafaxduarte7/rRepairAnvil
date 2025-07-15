@@ -6,12 +6,12 @@ import com.rafaxplugins.repairanvil.misc.config.ConfigBase;
 import com.rafaxplugins.repairanvil.misc.message.Message;
 import com.rafaxplugins.repairanvil.misc.utils.InventoryUtils;
 import com.rafaxplugins.repairanvil.misc.utils.NBTUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -28,12 +28,22 @@ public class InteractListener implements Listener {
 
         event.setCancelled(true);
 
+        final Action action = event.getAction();
+
+        if (action != Action.RIGHT_CLICK_BLOCK) return;
+
         final ItemStack itemStack = player.getItemInHand();
         if (itemStack == null || itemStack.getType() == null || itemStack.getType() == Material.AIR) return;
 
+        final ConfigBase messages = RepairAnvilPlugin.getMessagesConfig();
         final ConfigBase items = RepairAnvilPlugin.getItemsConfig();
+
         for (String nbt : items.getStringList("settings.no-repair-by-nbt")) {
-            if (NBTUtils.hasNbt(itemStack, nbt)) return;
+            if (NBTUtils.hasNbt(itemStack, nbt.trim().toLowerCase())) {
+                messages.getStringList("messages.has-nbt-blocked")
+                    .forEach(line -> Message.send(player, line));
+                return;
+            }
         }
 
         if (itemStack.getDurability() == 0) return;
@@ -41,7 +51,6 @@ public class InteractListener implements Listener {
         final Integer required = itemsLoader.getValue(itemStack.getType());
         if (required == null) return;
 
-        final ConfigBase messages = RepairAnvilPlugin.getMessagesConfig();
         if (!InventoryUtils.removeItems(player, Material.DIAMOND, required)) {
             messages.getStringList("messages.no-has-diamond").stream()
                 .map(line -> line.replace("<required>", String.valueOf(required)))

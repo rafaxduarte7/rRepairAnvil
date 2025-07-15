@@ -7,3 +7,4 @@ settings:
 items:
   # material : quantia necessária de diamantes
   DIAMOND_CHESTPLATE: 3 # peitoral de diamante, para reparar eu preciso de 3 diamantes
+  DIAMOND_HELMET: 2
