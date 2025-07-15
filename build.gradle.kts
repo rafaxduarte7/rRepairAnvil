@@ -29,7 +29,7 @@ bukkit {
     name = "rRepairAnvil"
     main = "com.rafaxplugins.repairanvil.RepairAnvilPlugin"
     author = "Rafax"
-    version = "0.1-ALPHA"
+    version = "07.15.2025"
 }
 
 tasks {
