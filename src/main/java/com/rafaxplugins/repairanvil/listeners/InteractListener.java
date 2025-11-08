@@ -26,11 +26,10 @@ public class InteractListener implements Listener {
         final Block clickedBlock = event.getClickedBlock();
         if (clickedBlock == null || clickedBlock.getType() != Material.ANVIL) return;
 
-        event.setCancelled(true);
-
         final Action action = event.getAction();
-
         if (action != Action.RIGHT_CLICK_BLOCK) return;
+
+        event.setCancelled(true);
 
         final ItemStack itemStack = player.getItemInHand();
         if (itemStack == null || itemStack.getType() == null || itemStack.getType() == Material.AIR) return;

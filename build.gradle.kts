@@ -28,8 +28,8 @@ dependencies {
 bukkit {
     name = "rRepairAnvil"
     main = "com.rafaxplugins.repairanvil.RepairAnvilPlugin"
-    author = "Rafax"
-    version = "1.0.2"
+    author = "i'am rafax"
+    version = "1.0.3"
 }
 
 tasks {
@@ -44,6 +44,6 @@ tasks {
 
     shadowJar {
         archiveFileName.set("rRepairAnvil.jar")
-        destinationDirectory = file("C:\\Users\\rafax\\Documents\\Portfolio\\Servidor Teste\\plugins")
+        destinationDirectory = file("C:\\Users\\i'am rafax\\Documents\\Portfolio\\Servidor Teste\\plugins")
     }
 }
